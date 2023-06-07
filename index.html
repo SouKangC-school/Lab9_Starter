@@ -87,6 +87,14 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "c9d90b6ae77842c88f911d6981e4c42a"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -126,6 +134,7 @@
 
     // Global error handler
     window.onerror = function(message, source, lineno, colno, error) {
+      TrackJS.track('Testing TrackJS!');
       console.error(`Error: ${message}\nSource: ${source}\nLine: ${lineno}\nColumn: ${colno}\nError object: ${error}`);
     }
 
