@@ -102,6 +102,56 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    // Assign console methods to corresponding buttons
+    errorBtns.forEach((button, index) => {
+      switch(index) {
+        case 0: button.addEventListener('click', () => console.log("Console Log Demo")); break;
+        case 1: button.addEventListener('click', () => console.error("Console Error Demo")); break;
+        case 2: button.addEventListener('click', () => console.count("Console Count Demo")); break;
+        case 3: button.addEventListener('click', () => console.warn("Console Warn Demo")); break;
+        case 4: button.addEventListener('click', () => console.assert(false, "Console Assert Demo")); break;
+        case 5: button.addEventListener('click', () => console.clear()); break;
+        case 6: button.addEventListener('click', () => console.dir(document.body)); break;
+        case 7: button.addEventListener('click', () => console.dirxml(document.body)); break;
+        case 8: button.addEventListener('click', () => console.group("Console Group Demo")); break;
+        case 9: button.addEventListener('click', () => console.groupEnd()); break;
+        case 10: button.addEventListener('click', () => console.table({a: 1, b: 2})); break;
+        case 11: button.addEventListener('click', () => console.time("Timer")); break;
+        case 12: button.addEventListener('click', () => console.timeEnd("Timer")); break;
+        case 13: button.addEventListener('click', () => console.trace("Trace Demo")); break;
+        case 14: button.addEventListener('click', () => { throw new Error('Test Global Error') }); break;
+      }
+    });
+
+    // Global error handler
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error(`Error: ${message}\nSource: ${source}\nLine: ${lineno}\nColumn: ${colno}\nError object: ${error}`);
+    }
+
+    // Try/Catch
+    try {
+      // Intentionally produce an error
+      aintGonnaWork();
+    } catch(error) {
+      console.error("Caught Error:", error);
+    } finally {
+      console.log("This finally block will always execute");
+    }
+
+    // Throw custom error
+    class CustomError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "CustomError";
+      }
+    }
+
+    try {
+      throw new CustomError("This is a custom error");
+    } catch(error) {
+      console.error("Caught Custom Error:", error);
+    }
   </script>
 </body>
 
